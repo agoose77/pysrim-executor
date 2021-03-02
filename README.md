@@ -1,10 +1,10 @@
-# pysrim-docker
+# pysrim-executor
 [![pypi-badge][]][pypi] 
 
-[pypi-badge]: https://img.shields.io/pypi/v/pysrim-docker
-[pypi]: https://pypi.org/project/pysrim-docker
+[pypi-badge]: https://img.shields.io/pypi/v/pysrim-executor
+[pypi]: https://pypi.org/project/pysrim-executor
 
-Docker executor for PySRIM
+Separate executors for PySRIM
 
 ## Getting Started
 To use this package, simply remove calls to `run()` method of `SR` and `TRIM`, and replace them with a call to the executor `run` dispatch method, e.g.:
