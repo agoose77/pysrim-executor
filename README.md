@@ -4,7 +4,7 @@
 [pypi-badge]: https://img.shields.io/pypi/v/pysrim-executor
 [pypi]: https://pypi.org/project/pysrim-executor
 
-Separate executors for PySRIM
+Extensible executor backends for pysrim.
 
 ## Getting Started
 To use this package, simply remove calls to `run()` method of `SR` and `TRIM`, and replace them with a call to the executor `run` dispatch method, e.g.:
