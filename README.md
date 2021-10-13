@@ -7,15 +7,38 @@
 Extensible executor backends for pysrim.
 
 ## Getting Started
-To use this package, simply remove calls to `run()` method of `SR` and `TRIM`, and replace them with a call to the executor `run` dispatch method, e.g.:
+Let's define a simple model using the pysrim example:
+```python3
+from srim import Ion, Layer, Target, TRIM
 
+# Construct a 3MeV Nickel ion
+ion = Ion('Ni', energy=3.0e6)
+
+# Construct a layer of nick 20um thick with a displacement energy of 30 eV
+layer = Layer({
+        'Ni': {
+            'stoich': 1.0,
+            'E_d': 30.0,
+            'lattice': 0.0,
+            'surface': 3.0
+        }}, density=8.9, width=20000.0)
+
+# Construct a target of a single layer of Nickel
+target = Target([layer])
+
+# Initialize a TRIM calculation with given target and ion for 25 ions, quick calculation
+trim = TRIM(target, ion, number_ions=25, calculation=1)
+
+```
+Normally, we would execute this with the `.run` method.
+```python3
+result = trim.run(srim_executable_directory)
+```
+pysrim-executor allows you to invert the relationship, and use multiple kinds of executors e.g. the `DockerExecutor`:
 ```python
 from srim.executor import DockerExecutor
-from srim import TRIM
 
 executor = DockerExecutor()
-
-trim = TRIM(...)
 result = executor.run(trim)
 ```
 
