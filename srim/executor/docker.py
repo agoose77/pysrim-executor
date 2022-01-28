@@ -26,7 +26,9 @@ cp -n **/*.{{IN,txt}} "{directory}/" || true
         container_image: str = "costrouc/srim",
         container_bind_path: PathLike = "/usr/local/src/srim",
         container_srim_directory: PathLike = "/tmp/srim",
+        docker_path: PathLike = "docker"
     ):
+        self._docker_path = docker_path
         self._container_image = container_image
         self._container_bind_directory = pathlib.PurePosixPath(container_bind_path)
         self._container_srim_directory = pathlib.PurePosixPath(container_srim_directory)
@@ -43,7 +45,7 @@ cp -n **/*.{{IN,txt}} "{directory}/" || true
         # Run command
         subprocess.check_call(
             [
-                "docker",
+                self._docker_path,
                 "run",
                 "--rm",
                 "--volume",
