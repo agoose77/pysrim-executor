@@ -1,22 +1,33 @@
-[tool.poetry]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = [
+    "black<21.0,>=20.8b1",
+]
+
+[tool.hatch.build]
+include = [
+  "srim"
+]
+
+[project]
+# PEP 621 project metadata
+# See https://www.python.org/dev/peps/pep-0621/
+authors = [
+    {name = "Angus Hollands", email = "goosey15@gmail.com"},
+]
+license = {text = "MIT"}
+requires-python = ">=3.6,<4.0"
+dependencies = [
+    "pysrim<1.0.0,>=0.5.10",
+]
 name = "pysrim-executor"
 version = "0.1.0"
 description = "Abstracted executor for PySRIM"
 readme = "README.md"
+
+[project.urls]
 repository = "https://github.com/agoose77/pysrim-executor"
-authors = ["Angus Hollands <goosey15@gmail.com>"]
-license = "MIT"
-packages = [
-    { include="srim" }
-]
-
-[tool.poetry.dependencies]
-python = "^3.6"
-pysrim = "^0.5.10"
-
-[tool.poetry.dev-dependencies]
-black = "^20.8b1"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
